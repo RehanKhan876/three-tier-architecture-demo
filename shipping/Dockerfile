@@ -3,7 +3,10 @@
 #
 FROM debian:10 AS build
 
-RUN apt-get update && apt-get -y install maven
+RUN apt-get update && \
+    apt-get -y install wget gnupg2 && \
+    wget -qO - https://www.apache.org/dist/maven/KEYS | apt-key add - && \
+    apt-get -y install maven
 
 WORKDIR /opt/shipping
 
