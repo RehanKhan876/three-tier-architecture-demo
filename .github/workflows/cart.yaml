@@ -55,5 +55,4 @@ jobs:
       - name: Docker Push
         run: |
           docker tag cart ${{ secrets.DOCKERHUB_USERNAME }}/cart:latest
-          docker push ${{ secrets.DOCKERHUB_USERNAME }}/cart:latest
-          
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/cart:latest    
