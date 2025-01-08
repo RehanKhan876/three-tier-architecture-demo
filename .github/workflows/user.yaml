@@ -18,7 +18,7 @@ on:
 jobs:
   payment:
     name: Build and deploy user microservice
-    runs-on: [self-hosted]  # Use a standard runner instead of self-hosted
+    runs-on: ubuntu-latest #[self-hosted]  # Use a standard runner instead of self-hosted
 
     steps:
       - name: Checkout code 
@@ -27,10 +27,13 @@ jobs:
           fetch-depth: 0
 
       - name: NPM install
-        run: npm install 
+        run: |
+           cd user
+           npm install 
 
       - name: Build Docker image
         run: |
+          cd user
           docker build -t user .  # Build image tagged as 'payment' from current directory
 
       - name: Docker Login (use secrets)
