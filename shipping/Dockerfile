@@ -1,11 +1,14 @@
 #
 # Build
 #
+#
+# Build
+#
 FROM debian:10 AS build
 
 RUN apt-get update && \
-    apt-get -y install wget gnupg2 && \
-    apt-get -y install maven
+    apt-get install -y wget gnupg2 && \
+    apt-get install -y maven
 
 WORKDIR /opt/shipping
 
@@ -28,5 +31,4 @@ ENV DB_HOST=mysql
 
 COPY --from=build /opt/shipping/target/shipping-1.0.jar shipping.jar
 
-CMD [ "java", "-Xmn256m", "-Xmx768m", "-jar", "shipping.jar" ]
-
+CMD ["java", "-Xmn256m", "-Xmx768m", "-jar", "shipping.jar"]
