@@ -18,7 +18,7 @@ on:
 jobs:
   payment:
     name: Build and deploy dispatch microservice
-    runs-on: [self-hosted]  # Use a standard runner instead of self-hosted
+    runs-on: ubuntu-latest #[self-hosted]  # Use a standard runner instead of self-hosted
 
     steps:
       - name: Checkout code 
@@ -28,11 +28,13 @@ jobs:
 
       - name:  Go install
         run: |
+            cd dispatch
             curl -sL https://dl.google.com/go/go1.18.linux-amd64.tar.gz |
             export PATH=$PATH:/home/runner/go/bin
 
       - name: Build Docker image
         run: |
+          cd dispatch 
           docker build -t payment .  # Build image tagged as 'payment' from current directory
 
       - name: Docker Login (use secrets)
@@ -40,5 +42,5 @@ jobs:
 
       - name: Docker Push
         run: |
-          docker tag dispatch ${name}/dispatch:latest
-          docker push ${name}/dispatch:latest
+          docker tag dispatch ${{ secrets.DOCKERHUB_USERNAME }}/dispatch:latest
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/dispatch:latest
