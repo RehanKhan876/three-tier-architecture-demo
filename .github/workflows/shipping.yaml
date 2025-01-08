@@ -18,7 +18,7 @@ on:
 jobs:
   payment:
     name: Build and deploy shipping microservice
-    runs-on: [self-hosted]  # Use a standard runner instead of self-hosted
+    runs-on: ubuntu-latest #[self-hosted]  # Use a standard runner instead of self-hosted
 
     steps:
       - name: Checkout code 
@@ -28,11 +28,13 @@ jobs:
 
       - name:  Go install
         run: |
+            cd shipping
             sudo apt-get install openjdk 17 |
             java -version
 
       - name: Build Docker image
         run: |
+          cd shipping
           docker build -t shipping . 
 
       - name: Docker Login (use secrets)
