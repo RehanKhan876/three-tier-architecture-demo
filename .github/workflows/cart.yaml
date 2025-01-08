@@ -40,10 +40,13 @@ jobs:
           docker-compose --version    
 
       - name: NPM install dependencies
-        run: npm install 
+        run: |
+          cd cart
+          npm install 
 
       - name: Build Docker image
         run: |
+          cd cart
           docker build -t cart .
 
       - name: Docker Login (use secrets)
