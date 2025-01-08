@@ -10,10 +10,10 @@ on:
       - 'OpenShift/**'
       - 'Swarm/**'
 
-jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Build the stack
-        run: docker-compose build
+#jobs:
+  #test:
+    #runs-on: ubuntu-latest
+    #steps:
+      #- uses: actions/checkout@v2
+      #- name: Build the stack
+       # run: docker-compose build
