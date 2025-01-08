@@ -26,11 +26,27 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Install Docker Compose
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y docker-compose
+
+      - name: Verify Docker and Docker Compose installation
+        run: |
+          docker --version
+          docker-compose --version
+          
       - name: NPM install
-        run: npm install 
+        run:  |
+          cd catalogue 
+          npm install 
 
       - name: Build Docker image
         run: |
+          cd catalogue
           docker build -t catalogue .  # Build image tagged as 'payment' from current directory
 
       - name: Docker Login (use secrets)
