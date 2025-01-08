@@ -9,7 +9,6 @@ on:
       - 'load-gen/**'
       - 'OpenShift/**'
       - 'Swarm/**'
-
 #jobs:
   #test:
     #runs-on: ubuntu-latest
