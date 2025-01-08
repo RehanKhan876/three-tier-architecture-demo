@@ -6,8 +6,11 @@
 #
 FROM debian:10 AS build
 
+ENV DEBIAN_FRONTEND=noninteractive
+
 RUN apt-get update -qq && \
     apt-get install -y --no-install-recommends wget gnupg2 ca-certificates && \
+    apt-get install -y --no-install-recommends openjdk-11-jre-headless && \
     apt-get install -f && \
     apt-get install -y --no-install-recommends maven
 
