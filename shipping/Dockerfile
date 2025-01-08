@@ -4,13 +4,11 @@
 #
 # Build
 #
-#
-# Build
-#
 FROM debian:10 AS build
 
 RUN apt-get update -qq && \
     apt-get install -y --no-install-recommends wget gnupg2 ca-certificates && \
+    apt-get install -f && \
     apt-get install -y --no-install-recommends maven
 
 WORKDIR /opt/shipping
