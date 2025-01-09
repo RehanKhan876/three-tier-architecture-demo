@@ -1,7 +1,5 @@
-
-
-# Use the official Go 1.17 image as the base image
-FROM golang:1.17
+# Use the official Go 1.21 image as the base image
+FROM golang:1.21
 
 # Set the working directory inside the container
 WORKDIR /go/src/app
