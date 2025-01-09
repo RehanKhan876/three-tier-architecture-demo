@@ -31,7 +31,7 @@ jobs:
             cd dispatch
             curl -sL https://dl.google.com/go/go1.18.linux-amd64.tar.gz |
             export PATH=$PATH:/home/runner/go/bin
-
+            
       - name: Build Docker image
         run: |
           cd dispatch 
