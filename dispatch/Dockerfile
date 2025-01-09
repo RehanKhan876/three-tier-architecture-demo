@@ -1,23 +1,17 @@
-# Use a Go version compatible with your application
+# Use a Go 1.19 image
 FROM golang:1.19
 
-# Set the working directory inside the container
+# Set the working directory
 WORKDIR /go/src/app
 
-# Check if go.sum exists
-RUN test -f go.sum || echo "go.sum does not exist, skipping copy"
-
-# Copy go.mod and go.sum (if it exists)
-COPY go.mod go.sum ./
+# Copy go.mod
+COPY go.mod ./
 
 # Download all dependencies
 RUN go mod download
 
-# Copy all the Go source files
+# Copy the rest of the code
 COPY . .
-
-# Initialize and tidy Go modules
-RUN go mod init dispatch && go mod tidy
 
 # Build the Go application
 RUN go build -o dispatch .
