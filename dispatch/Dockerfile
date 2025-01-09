@@ -1,20 +1,9 @@
 # Use a Go 1.19 image
-FROM golang:1.19
+FROM golang:1.17
 
-# Set the working directory
 WORKDIR /go/src/app
 
-# Copy go.mod
-COPY go.mod ./
+COPY *.go .
 
-# Download all dependencies
-RUN go mod download
-
-# Copy the rest of the code
-COPY . .
-
-# Build the Go application
-RUN go build -o dispatch .
-
-# Command to run the application
-CMD ["./dispatch"]
+RUN go mod init dispatch && go get
+RUN go install
