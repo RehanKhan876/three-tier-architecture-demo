@@ -38,7 +38,7 @@ jobs:
         run: |
           docker --version
           docker-compose --version    
-
+          
       - name: NPM install dependencies
         run: |
           cd cart
